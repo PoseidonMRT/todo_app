@@ -1,30 +1,35 @@
 import 'package:flutter/material.dart';
-
 import 'dart:async';
 
+// contain Future delayed async task,
+// default count down time is three seconds,
+// u can use timeTotal to change total count down times
 class SplashPage extends StatefulWidget {
+
+  final int timeTotal;
+
+  const SplashPage({Key key,this.timeTotal}):super(key:key);
+
   @override
   _SplashPageState createState() => _SplashPageState();
 }
 
 class _SplashPageState extends State<SplashPage> {
-  void navigationPage() {
-    Navigator.of(context).pushReplacementNamed('/homePage');
-  }
+  int timeTotal;
 
   @override
   void initState() {
+    timeTotal = widget.timeTotal ?? 3;
     super.initState();
     startCountDown();
   }
 
-  ///
   void startCountDown(){
-    var _duration = new Duration(seconds: 3);
-    new Future.delayed(_duration,goHomePage);
+    var _duration = new Duration(seconds: timeTotal);
+    new Future.delayed(_duration,navigationPage);
   }
 
-  void goHomePage(){
+  void navigationPage() {
     Navigator.of(context).pushReplacementNamed('/homePage');
   }
 

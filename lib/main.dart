@@ -14,7 +14,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SplashPageWithTimer(),
+      home: SplashPageWithTimer(timeTotal: 7,),
+//    home: SplashPage(),
       routes: <String,WidgetBuilder>{
         'homePage':(BuildContext context) => new HomePage(),
       }

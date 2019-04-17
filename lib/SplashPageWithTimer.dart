@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
+// contain count down timer widgets,
+// default count down time is three seconds,
+// u can use timeTotal to change count down times
 class SplashPageWithTimer extends StatefulWidget {
+
+  final int timeTotal;
+
+  const SplashPageWithTimer({Key key,this.timeTotal}):super(key:key);
+
   @override
   _SplashPageWithTimerState createState() {
     return new _SplashPageWithTimerState();
@@ -9,14 +17,13 @@ class SplashPageWithTimer extends StatefulWidget {
 }
 
 class _SplashPageWithTimerState extends State<SplashPageWithTimer> {
-
-  int timeTotal = 3;
-  int countTime = 0;
+  int timeTotal;
 
   Timer timer;
 
   @override
   void initState() {
+    timeTotal = widget.timeTotal ?? 3;
     super.initState();
     startTimer();
   }
@@ -29,9 +36,8 @@ class _SplashPageWithTimerState extends State<SplashPageWithTimer> {
 
   void startTimer(){
     timer = new Timer.periodic(const Duration(seconds: 1), (timer){
-      if (timeTotal - countTime > 0){
+      if (timeTotal > 1){
         setState(() {
-          countTime++;
           timeTotal--;
         });
       }else{
@@ -41,8 +47,7 @@ class _SplashPageWithTimerState extends State<SplashPageWithTimer> {
   }
 
   void releaseTimer(){
-    countTime = 0;
-    timeTotal = 3;
+    timeTotal = widget.timeTotal ?? 3;
     timer.cancel();
     timer = null;
   }
@@ -70,6 +75,7 @@ class _SplashPageWithTimerState extends State<SplashPageWithTimer> {
           child: new Text(
             "Helio",
             style: new TextStyle(
+              fontFamily: 'DancingBold',
               decoration: TextDecoration.none,
               color: Colors.white,
               fontSize: 60,
