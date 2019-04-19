@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // contain count down timer widgets,
 // default count down time is three seconds,
@@ -21,17 +22,37 @@ class _SplashPageWithTimerState extends State<SplashPageWithTimer> {
 
   Timer timer;
 
+  SharedPreferences preferences;
+
+  bool isFirstRun;
+
   @override
   void initState() {
     timeTotal = widget.timeTotal ?? 3;
     super.initState();
-    startTimer();
+    initPreference();
   }
 
   @override
   void dispose() {
-    releaseTimer();
+    if (!isFirstRun){
+      releaseTimer();
+    }
     super.dispose();
+  }
+
+  void initPreference() async {
+    preferences = await SharedPreferences.getInstance();
+    isFirstRun = preferences.getBool("isFirstRun"); // no values in SharedPreferences with return null
+
+    if (isFirstRun == null){
+      isFirstRun = true;
+    }
+    if (!isFirstRun){
+      startTimer();
+    }else{
+      goUserGuidePage();
+    }
   }
 
   void startTimer(){
@@ -56,8 +77,16 @@ class _SplashPageWithTimerState extends State<SplashPageWithTimer> {
     Navigator.of(context).pushReplacementNamed('homePage');
   }
 
+  void goUserGuidePage(){
+    Navigator.of(context).pushReplacementNamed('userGuidePage');
+  }
+
   @override
   Widget build(BuildContext context) {
+    return buildSplashPageWidget();
+  }
+
+  Widget buildSplashPageWidget(){
     return Stack(
       children: <Widget>[
         new Container(
@@ -84,16 +113,16 @@ class _SplashPageWithTimerState extends State<SplashPageWithTimer> {
         ),
         new Container(
           constraints: new BoxConstraints.expand(
-            width: 30,
-            height: 30
+              width: 30,
+              height: 30
           ),
           decoration: new BoxDecoration(
-            shape: BoxShape.circle,
-            color: Colors.white,
-            border: new Border.all(
-              color: Colors.lightBlueAccent,
-              width: 2.5
-            )
+              shape: BoxShape.circle,
+              color: Colors.white,
+              border: new Border.all(
+                  color: Colors.lightBlueAccent,
+                  width: 2.5
+              )
           ),
           alignment: Alignment.center,
           margin: EdgeInsets.only(left: 360,top: 40),

@@ -30,7 +30,7 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   void navigationPage() {
-    Navigator.of(context).pushReplacementNamed('/homePage');
+    Navigator.of(context).pushReplacementNamed('homePage');
   }
 
   @override
