@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Helio',
+        debugShowCheckedModeBanner: false,//是否显示右上角debug标签，true-显示，false-隐藏
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
