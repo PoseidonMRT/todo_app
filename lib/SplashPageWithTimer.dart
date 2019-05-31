@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'Constants.dart';
 
 // contain count down timer widgets,
 // default count down time is three seconds,
@@ -43,11 +45,10 @@ class _SplashPageWithTimerState extends State<SplashPageWithTimer> {
 
   void initPreference() async {
     preferences = await SharedPreferences.getInstance();
-    isFirstRun = preferences.getBool("isFirstRun"); // no values in SharedPreferences with return null
-
-    if (isFirstRun == null){
-      isFirstRun = true;
-    }
+    isFirstRun = preferences.getBool(Constants.keyIsFirstRun); // no values in SharedPreferences with return null
+//    if (isFirstRun == null){
+//      isFirstRun = true;
+//    }
     if (!isFirstRun){
       startTimer();
     }else{
@@ -74,15 +75,16 @@ class _SplashPageWithTimerState extends State<SplashPageWithTimer> {
   }
 
   void goHomePage(){
-    Navigator.of(context).pushReplacementNamed('homePage');
+    Navigator.of(context).pushReplacementNamed(Constants.homePageRoutesTag);
   }
 
   void goUserGuidePage(){
-    Navigator.of(context).pushReplacementNamed('userGuidePage');
+    Navigator.of(context).pushReplacementNamed(Constants.userGuidePageRoutesTag);
   }
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([]);
     return buildSplashPageWidget();
   }
 
@@ -125,12 +127,12 @@ class _SplashPageWithTimerState extends State<SplashPageWithTimer> {
               )
           ),
           alignment: Alignment.center,
-          margin: EdgeInsets.only(left: 360,top: 40),
+          margin: EdgeInsets.all(10),
           child: new Text(
             '$timeTotal',
             style: new TextStyle(
               decoration: TextDecoration.none,
-              color: Colors.black54,
+              color: Colors.red,
               fontSize: 13,
             ),
           ),

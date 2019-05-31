@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:flutter/services.dart';
 
 // contain Future delayed async task,
 // default count down time is three seconds,
@@ -35,6 +36,7 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([]);
     return new Container(
       decoration: new BoxDecoration(
           gradient: new LinearGradient(
