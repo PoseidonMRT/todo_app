@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class UserGuidePage extends StatefulWidget {
 
@@ -12,10 +13,8 @@ class _UserGuidePageState extends State<UserGuidePage> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([]);
     return Scaffold(
-      appBar: AppBar(
-
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
