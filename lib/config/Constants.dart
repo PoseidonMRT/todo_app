@@ -6,7 +6,6 @@ class Constants{
   static final String keyIsFirstRun = "isFirstRun";
 
 
-
   ///navigator routes tag
   ///
   ///home page tag
@@ -18,4 +17,7 @@ class Constants{
   ///Settings
   ///是否显示右上角debug标签，true-显示，false-隐藏
   static final bool isNeedShowDebugBanner = false;
+
+  /// unit:s
+  static final int defaultSplashPageDisplayTime = 3;
 }

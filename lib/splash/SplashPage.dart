@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
+import 'package:todo_app/config/Constants.dart';
 
 // contain Future delayed async task,
 // default count down time is three seconds,
@@ -20,7 +21,7 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   void initState() {
-    timeTotal = widget.timeTotal ?? 3;
+    timeTotal = widget.timeTotal ?? Constants.defaultSplashPageDisplayTime;
     super.initState();
     startCountDown();
   }
@@ -31,7 +32,7 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   void navigationPage() {
-    Navigator.of(context).pushReplacementNamed('homePage');
+    Navigator.of(context).pushReplacementNamed(Constants.homePageRoutesTag);
   }
 
   @override

@@ -46,9 +46,6 @@ class _SplashPageWithTimerState extends State<SplashPageWithTimer> {
   void initPreference() async {
     preferences = await SharedPreferences.getInstance();
     isFirstRun = preferences.getBool(Constants.keyIsFirstRun); // no values in SharedPreferences with return null
-//    if (isFirstRun == null){
-//      isFirstRun = true;
-//    }
     if (!isFirstRun){
       startTimer();
     }else{
@@ -69,7 +66,7 @@ class _SplashPageWithTimerState extends State<SplashPageWithTimer> {
   }
 
   void releaseTimer(){
-    timeTotal = widget.timeTotal ?? 3;
+    timeTotal = widget.timeTotal ?? Constants.defaultSplashPageDisplayTime;
     timer.cancel();
     timer = null;
   }
