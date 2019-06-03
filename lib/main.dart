@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'SplashPageWithTimer.dart';
+import 'package:todo_app/splash/SplashPageWithTimer.dart';
 import 'HomePage.dart';
-import 'UserGuidePage.dart';
-import 'Constants.dart';
+import 'package:todo_app/userguide/UserGuidePage.dart';
+import 'package:todo_app/config/Constants.dart';
 import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,7 +17,7 @@ Future initPreferencesData() async {
   SharedPreferences preferences = await SharedPreferences.getInstance();
   bool isFirstRun = preferences.getBool(Constants.keyIsFirstRun);
   if (isFirstRun == null) {
-    preferences.setBool(Constants.keyIsFirstRun, false);
+    preferences.setBool(Constants.keyIsFirstRun, true);
   }
 }
 
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Helio',
-        debugShowCheckedModeBanner: false, //是否显示右上角debug标签，true-显示，false-隐藏
+        debugShowCheckedModeBanner: Constants.isNeedShowDebugBanner,
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),

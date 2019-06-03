@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'Constants.dart';
+import 'package:todo_app/config/Constants.dart';
 
 // contain count down timer widgets,
 // default count down time is three seconds,
