@@ -6,11 +6,30 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  void onSearchActionButtonClicked() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('MainPage'),
+        backgroundColor: Colors.white,
+        elevation: 0,//remove appbar shadow
+        actions: <Widget>[
+          Container(
+            width: 30,
+            height: 30,
+            decoration: new BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white,
+                boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 2)],
+                border: Border.all(color: Colors.grey, width: 0.5)),
+            margin: EdgeInsets.only(right: 5),
+            child: IconButton(
+                color: Colors.grey,
+                icon: Icon(Icons.search,size: 15,),
+                onPressed: onSearchActionButtonClicked),
+          ),
+        ],
       ),
       body: Center(
         child: Column(
