@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:todo_app/splash/SplashPageWithTimer.dart';
-import 'HomePage.dart';
+import 'MainHomePage.dart';
 import 'package:todo_app/userguide/UserGuidePage.dart';
 import 'package:todo_app/config/Constants.dart';
 import 'dart:async';
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         home: SplashPageWithTimer(),
 //    home: SplashPage(),
         routes: <String, WidgetBuilder>{
-          Constants.homePageRoutesTag: (BuildContext context) => new HomePage(),
+          Constants.homePageRoutesTag: (BuildContext context) => new MainHomePage(),
           Constants.userGuidePageRoutesTag: (BuildContext context) => new UserGuidePage(),
         });
   }

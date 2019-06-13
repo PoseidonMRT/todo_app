@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class CameraPage extends StatefulWidget {
+class PlanDatePage extends StatefulWidget {
 
   @override
-  _CameraPageState createState() {
-    return new _CameraPageState();
+  _PlanDatePageState createState() {
+    return new _PlanDatePageState();
   }
 }
 
-class _CameraPageState extends State<CameraPage> {
+class _PlanDatePageState extends State<PlanDatePage> {
 
   @override
   Widget build(BuildContext context) {

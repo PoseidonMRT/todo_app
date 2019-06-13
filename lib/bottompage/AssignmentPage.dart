@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class AssignmentPage extends StatefulWidget {
+class HomePage extends StatefulWidget {
 
   @override
-  _AssignmentPageState createState() {
-    return new _AssignmentPageState();
+  _HomePageState createState() {
+    return new _HomePageState();
   }
 }
 
-class _AssignmentPageState extends State<AssignmentPage> {
+class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {

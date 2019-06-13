@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class PersonPage extends StatefulWidget {
+class SettingsPage extends StatefulWidget {
 
   @override
-  _PersonPageState createState() {
-    return new _PersonPageState();
+  _SettingsPageState createState() {
+    return new _SettingsPageState();
   }
 }
 
-class _PersonPageState extends State<PersonPage> {
+class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {

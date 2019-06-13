@@ -11,6 +11,9 @@ There are following directory in this project:
 - android directory
 
   this directory contains native codes of Android platform,when we need to do something in native code,we can edit files in this directory.
+- assets directory
+
+  this directory contains some resources for project such as fonts ，images and so on.
 - ios directory
 
   this directory contains native codes of IOS platform,when we need to do something in native code,we can edit files in this directory.
