@@ -8,10 +8,9 @@ import 'package:todo_app/config/Constants.dart';
 // default count down time is three seconds,
 // u can use timeTotal to change count down times
 class SplashPageWithTimer extends StatefulWidget {
-
   final int timeTotal;
 
-  const SplashPageWithTimer({Key key,this.timeTotal}):super(key:key);
+  const SplashPageWithTimer({Key key, this.timeTotal}) : super(key: key);
 
   @override
   _SplashPageWithTimerState createState() {
@@ -37,7 +36,7 @@ class _SplashPageWithTimerState extends State<SplashPageWithTimer> {
 
   @override
   void dispose() {
-    if (!isFirstRun){
+    if (!isFirstRun) {
       releaseTimer();
     }
     super.dispose();
@@ -45,38 +44,42 @@ class _SplashPageWithTimerState extends State<SplashPageWithTimer> {
 
   void initPreference() async {
     preferences = await SharedPreferences.getInstance();
-    isFirstRun = preferences.getBool(Constants.keyIsFirstRun); // no values in SharedPreferences with return null
-    if (!isFirstRun){
+    isFirstRun = preferences.getBool(Constants
+        .keyIsFirstRun); // no values in SharedPreferences with return null
+    if (!isFirstRun) {
       startTimer();
-    }else{
+    } else {
       goUserGuidePage();
     }
   }
 
-  void startTimer(){
-    timer = new Timer.periodic(const Duration(seconds: 1), (timer){
-      if (timeTotal > 1){
+  void startTimer() {
+    timer = new Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (timeTotal > 1) {
         setState(() {
           timeTotal--;
         });
-      }else{
+      } else {
         goHomePage();
       }
     });
   }
 
-  void releaseTimer(){
+  void releaseTimer() {
     timeTotal = widget.timeTotal ?? Constants.defaultSplashPageDisplayTime;
     timer.cancel();
     timer = null;
   }
 
-  void goHomePage(){
-    Navigator.of(context).pushReplacementNamed(Constants.homePageRoutesTag);
+  void goHomePage() {
+    Navigator.of(context).pushReplacementNamed(Constants.isMainPageSupportSwipe
+        ? Constants.swipeHomePageRoutesTag
+        : Constants.homePageRoutesTag);
   }
 
-  void goUserGuidePage(){
-    Navigator.of(context).pushReplacementNamed(Constants.userGuidePageRoutesTag);
+  void goUserGuidePage() {
+    Navigator.of(context)
+        .pushReplacementNamed(Constants.userGuidePageRoutesTag);
   }
 
   @override
@@ -85,7 +88,7 @@ class _SplashPageWithTimerState extends State<SplashPageWithTimer> {
     return buildSplashPageWidget();
   }
 
-  Widget buildSplashPageWidget(){
+  Widget buildSplashPageWidget() {
     return Stack(
       children: <Widget>[
         new Container(
@@ -111,18 +114,12 @@ class _SplashPageWithTimerState extends State<SplashPageWithTimer> {
           ),
         ),
         new Container(
-          constraints: new BoxConstraints.expand(
-              width: 30,
-              height: 30
-          ),
+          constraints: new BoxConstraints.expand(width: 30, height: 30),
           decoration: new BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.white,
-              border: new Border.all(
-                  color: Colors.lightBlueAccent,
-                  width: 2.5
-              )
-          ),
+              border:
+                  new Border.all(color: Colors.lightBlueAccent, width: 2.5)),
           alignment: Alignment.center,
           margin: EdgeInsets.all(10),
           child: new Text(

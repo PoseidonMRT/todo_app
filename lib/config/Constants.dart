@@ -10,6 +10,7 @@ class Constants{
   ///
   ///home page tag
   static final String homePageRoutesTag = "homePage";
+  static final String swipeHomePageRoutesTag = "swipeHomePage";
 
   ///user guide page tag
   static final String userGuidePageRoutesTag = "userGuidePage";
@@ -20,4 +21,6 @@ class Constants{
 
   /// unit:s
   static final int defaultSplashPageDisplayTime = 3;
+
+  static final bool isMainPageSupportSwipe = true;
 }

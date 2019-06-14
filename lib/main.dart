@@ -6,6 +6,7 @@ import 'package:todo_app/userguide/UserGuidePage.dart';
 import 'package:todo_app/config/Constants.dart';
 import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'SwipeMainHomePage.dart';
 
 void main() {
   initPreferencesData().whenComplete(() => {
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
 //    home: SplashPage(),
         routes: <String, WidgetBuilder>{
           Constants.homePageRoutesTag: (BuildContext context) => new MainHomePage(),
+          Constants.swipeHomePageRoutesTag: (BuildContext context) => new SwipeMainHomePage(),
           Constants.userGuidePageRoutesTag: (BuildContext context) => new UserGuidePage(),
         });
   }
