@@ -151,7 +151,7 @@ class _SwipeMainHomePageState extends State<SwipeMainHomePage> {
                 color: Colors.white,
                 boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 2)],
                 border: Border.all(color: Colors.grey, width: 0.5)),
-            margin: EdgeInsets.only(right: 5),
+            margin: EdgeInsets.only(right: 16),
             child: IconButton(
                 color: Colors.grey,
                 icon: Icon(
