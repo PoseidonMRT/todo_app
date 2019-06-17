@@ -56,6 +56,10 @@ class _UserGuidePageState extends State<UserGuidePage> {
     ];
   }
 
+  Widget buildIcon(BuildContext context,int index){
+    return Icon(Icons.brightness_1,color: currentGuidePageIndex == index?Colors.blue:Colors.grey,size: 8,);
+  }
+
   Widget buildBottomAppBar(BuildContext context){
     return Container(
       height: 68,
@@ -64,9 +68,31 @@ class _UserGuidePageState extends State<UserGuidePage> {
         children: <Widget>[
           Offstage(
             offstage: nextPageActionVisible,
-            child: RaisedButton(
-              child: Text('next page'),
-              onPressed: goNextGuidePage,
+            child: Row(
+              children: <Widget>[
+                Expanded(child: Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(padding: EdgeInsets.only(left: 20)),
+                      buildIcon(context,0),
+                      buildIcon(context, 1),
+                      buildIcon(context, 2),
+                    ],
+                  ),
+                )),
+                Expanded(
+                  child: Container(
+                    width: 40,
+                    alignment: Alignment.centerRight,
+                    child: FlatButton(
+                      child: new Text("NEXT",textScaleFactor: 1,),
+                      color: Color.fromARGB(1, 245, 246, 249),
+                      onPressed: goNextGuidePage,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           Offstage(
