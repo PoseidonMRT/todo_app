@@ -8,7 +8,6 @@ import 'GuidePageTwo.dart';
 import 'GuidePageThree.dart';
 
 class UserGuidePage extends StatefulWidget {
-
   @override
   _UserGuidePageState createState() {
     return new _UserGuidePageState();
@@ -16,7 +15,6 @@ class UserGuidePage extends StatefulWidget {
 }
 
 class _UserGuidePageState extends State<UserGuidePage> {
-
   SharedPreferences sharedPreferences;
 
   int currentGuidePageIndex;
@@ -26,19 +24,20 @@ class _UserGuidePageState extends State<UserGuidePage> {
 
   Future setUserGuideCompleted() async {
     sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences.setBool(Constants.keyIsFirstRun,false);
+    sharedPreferences.setBool(Constants.keyIsFirstRun, false);
   }
 
   void userGuideActionComplete() {
-    setUserGuideCompleted().whenComplete(()=>{
-      Navigator.of(context).pushReplacementNamed(Constants.homePageRoutesTag)
-    });
+    setUserGuideCompleted().whenComplete(() => {
+          Navigator.of(context)
+              .pushReplacementNamed(Constants.homePageRoutesTag)
+        });
   }
 
-  void goNextGuidePage(){
+  void goNextGuidePage() {
     setState(() {
       currentGuidePageIndex++;
-      if (currentGuidePageIndex == 2){
+      if (currentGuidePageIndex == 2) {
         mainPageActionVisible = false;
         nextPageActionVisible = true;
       }
@@ -56,13 +55,18 @@ class _UserGuidePageState extends State<UserGuidePage> {
     ];
   }
 
-  Widget buildIcon(BuildContext context,int index){
-    return Icon(Icons.brightness_1,color: currentGuidePageIndex == index?Colors.blue:Colors.grey,size: 8,);
+  Widget buildIcon(BuildContext context, int index) {
+    return Icon(
+      Icons.brightness_1,
+      color: currentGuidePageIndex == index ? Colors.blue : Colors.grey,
+      size: 8,
+    );
   }
 
-  Widget buildBottomAppBar(BuildContext context){
+  Widget buildBottomAppBar(BuildContext context) {
     return Container(
       height: 68,
+      margin: EdgeInsets.only(bottom: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
@@ -70,12 +74,13 @@ class _UserGuidePageState extends State<UserGuidePage> {
             offstage: nextPageActionVisible,
             child: Row(
               children: <Widget>[
-                Expanded(child: Container(
+                Expanded(
+                    child: Container(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Padding(padding: EdgeInsets.only(left: 20)),
-                      buildIcon(context,0),
+                      buildIcon(context, 0),
                       buildIcon(context, 1),
                       buildIcon(context, 2),
                     ],
@@ -86,8 +91,15 @@ class _UserGuidePageState extends State<UserGuidePage> {
                     width: 40,
                     alignment: Alignment.centerRight,
                     child: FlatButton(
-                      child: new Text("NEXT",textScaleFactor: 1,),
-                      color: Color.fromARGB(1, 245, 246, 249),
+                      child: new Text(
+                        "NEXT"+" \ue409",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: "MaterialIcons",
+                          color: Colors.grey,
+                          fontSize: 14,
+                        ),
+                      ),
                       onPressed: goNextGuidePage,
                     ),
                   ),
@@ -97,9 +109,43 @@ class _UserGuidePageState extends State<UserGuidePage> {
           ),
           Offstage(
             offstage: mainPageActionVisible,
-            child: RaisedButton(
-              child: Text('enter main page'),
-              onPressed: userGuideActionComplete,
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                borderRadius: new BorderRadius.circular(50),
+                gradient: new LinearGradient(
+                    colors: [
+                      Color(0xFF68B7CE),
+                      Color(0xFF37EBBB),
+                    ],
+                    begin: FractionalOffset(0.0, 0.0),
+                    end: FractionalOffset(1.0, 0.0),
+                    stops: [0.0, 1.0],
+                    tileMode: TileMode.clamp),
+              ),
+              margin: EdgeInsets.only(left: 40, right: 40, bottom: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  new FlatButton(
+                    child: Text(
+                      'Get Started',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    ),
+                    color: Colors.transparent,
+                    padding: EdgeInsets.only(right: 0),
+                    onPressed: userGuideActionComplete,
+                  ),
+                  new Icon(
+                    Icons.navigate_next,
+                    color: Colors.white,
+                  )
+                ],
+              ),
             ),
           )
         ],
@@ -111,7 +157,7 @@ class _UserGuidePageState extends State<UserGuidePage> {
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([]);
     return Scaffold(
-      body:pageLists[currentGuidePageIndex],
+      body: pageLists[currentGuidePageIndex],
       bottomNavigationBar: buildBottomAppBar(context),
     );
   }
