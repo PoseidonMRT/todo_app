@@ -17,6 +17,9 @@ class _SwipeMainHomePageState extends State<SwipeMainHomePage> {
 
   PageController pageController;
 
+  bool searchActionVisible = false;
+  bool userCenterActionVisible = true;
+
   @override
   void initState() {
     super.initState();
@@ -39,6 +42,10 @@ class _SwipeMainHomePageState extends State<SwipeMainHomePage> {
 
   void onSearchActionButtonClicked() {}
 
+  void onUserCenterActionButtonClicked(){
+
+  }
+
   Icon getTabIcon(int curIndex) {
     if (curIndex == currentTabIndex) {
       return Icon(tabImages[curIndex][1],color: Colors.blue,);
@@ -47,6 +54,15 @@ class _SwipeMainHomePageState extends State<SwipeMainHomePage> {
   }
 
   void onBottomNavigationBarTap(int index){
+    setState(() {
+      if (index != 3){
+        searchActionVisible = false;
+        userCenterActionVisible = true;
+      }else{
+        searchActionVisible = true;
+        userCenterActionVisible = false;
+      }
+    });
     pageController.animateToPage(index, duration: const Duration(milliseconds: 300), curve: Curves.ease);
   }
 
@@ -120,6 +136,13 @@ class _SwipeMainHomePageState extends State<SwipeMainHomePage> {
 
   void onPageChanged(int index){
     setState(() {
+      if (index != 3){
+        searchActionVisible = false;
+        userCenterActionVisible = true;
+      }else{
+        searchActionVisible = true;
+        userCenterActionVisible = false;
+      }
       currentTabIndex = index;
     });
   }
@@ -143,23 +166,43 @@ class _SwipeMainHomePageState extends State<SwipeMainHomePage> {
           );
         }),
         actions: <Widget>[
-          Container(
-            width: 30,
-            height: 30,
-            decoration: new BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.white,
-                boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 2)],
-                border: Border.all(color: Colors.grey, width: 0.5)),
-            margin: EdgeInsets.only(right: 16),
-            child: IconButton(
-                color: Colors.grey,
-                icon: Icon(
-                  Icons.search,
-                  size: 15,
-                ),
-                onPressed: onSearchActionButtonClicked),
+          Offstage(
+            offstage: searchActionVisible,
+            child: Container(
+              width: 30,
+              height: 30,
+              decoration: new BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                  boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 2)],
+                  border: Border.all(color: Colors.grey, width: 0.5)),
+              margin: EdgeInsets.only(right: 16),
+              child: IconButton(
+                  color: Colors.grey,
+                  icon: Icon(
+                    Icons.search,
+                    size: 15,
+                  ),
+                  onPressed: onSearchActionButtonClicked),
+            ),
           ),
+          Offstage(
+            offstage: userCenterActionVisible,
+            child: Container(
+              child: Container(
+                width: 30,
+                height: 30,
+                margin: EdgeInsets.only(right: 18),
+                child: IconButton(
+                    icon: Icon(
+                      Icons.person_pin,
+                      color:Colors.grey,
+                      size: 38,
+                    ),
+                    onPressed: onUserCenterActionButtonClicked),
+              ),
+            ),
+          )
         ],
       ),
       drawer: Drawer(

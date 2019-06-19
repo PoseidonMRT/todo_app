@@ -15,58 +15,66 @@ class _MainHomePageState extends State<MainHomePage> {
   var tabImages;
   var pageLists;
 
+  bool searchActionVisible = false;
+  bool userCenterActionVisible = true;
+
   @override
   void initState() {
     super.initState();
     tabImages = [
-      [Icons.home,Icons.home],
-      [Icons.insert_chart,Icons.insert_chart],
-      [Icons.date_range,Icons.date_range],
-      [Icons.settings,Icons.settings]
+      [Icons.home, Icons.home],
+      [Icons.insert_chart, Icons.insert_chart],
+      [Icons.date_range, Icons.date_range],
+      [Icons.settings, Icons.settings]
     ];
 
-    pageLists = [
-      HomePage(),
-      GeneraViewPage(),
-      PlanDatePage(),
-      SettingsPage()
-    ];
+    pageLists = [HomePage(), GeneraViewPage(), PlanDatePage(), SettingsPage()];
   }
 
   void onSearchActionButtonClicked() {}
 
+  void onUserCenterActionButtonClicked(){
+
+  }
+
   Icon getTabIcon(int curIndex) {
     if (curIndex == currentTabIndex) {
-      return Icon(tabImages[curIndex][1],color: Colors.blue,);
+      return Icon(
+        tabImages[curIndex][1],
+        color: Colors.blue,
+      );
     }
     return Icon(tabImages[curIndex][0]);
   }
 
-  Widget buildBottomNavigationBar(BuildContext context){
+  Widget buildBottomNavigationBar(BuildContext context) {
     return BottomNavigationBar(
       items: <BottomNavigationBarItem>[
-        new BottomNavigationBarItem(
-            icon: getTabIcon(0),title: Text("首页")),
-        new BottomNavigationBarItem(
-            icon: getTabIcon(1),title: Text("概览")),
-        new BottomNavigationBarItem(
-            icon: getTabIcon(2),title: Text("计划")),
-        new BottomNavigationBarItem(
-            icon: getTabIcon(3),title: Text("设置")),
+        new BottomNavigationBarItem(icon: getTabIcon(0), title: Text("首页")),
+        new BottomNavigationBarItem(icon: getTabIcon(1), title: Text("概览")),
+        new BottomNavigationBarItem(icon: getTabIcon(2), title: Text("计划")),
+        new BottomNavigationBarItem(icon: getTabIcon(3), title: Text("设置")),
       ],
       backgroundColor: Colors.white,
       type: BottomNavigationBarType.fixed,
       currentIndex: currentTabIndex,
       iconSize: 24.0,
-      onTap: (index){
+      onTap: (index) {
         setState(() {
+          if (index != 3){
+            searchActionVisible = false;
+            userCenterActionVisible = true;
+          }else{
+            searchActionVisible = true;
+            userCenterActionVisible = false;
+          }
           currentTabIndex = index;
         });
       },
     );
   }
 
-  Widget buildBottomAppbar(BuildContext context){
+  Widget buildBottomAppbar(BuildContext context) {
     return BottomAppBar(
       shape: CircularNotchedRectangle(),
       child: Row(
@@ -78,6 +86,8 @@ class _MainHomePageState extends State<MainHomePage> {
             highlightColor: Colors.blue,
             onPressed: () {
               setState(() {
+                searchActionVisible = false;
+                userCenterActionVisible = true;
                 currentTabIndex = 0;
               });
             },
@@ -86,6 +96,8 @@ class _MainHomePageState extends State<MainHomePage> {
             icon: getTabIcon(1),
             onPressed: () {
               setState(() {
+                searchActionVisible = false;
+                userCenterActionVisible = true;
                 currentTabIndex = 1;
               });
             },
@@ -94,6 +106,8 @@ class _MainHomePageState extends State<MainHomePage> {
             icon: getTabIcon(2),
             onPressed: () {
               setState(() {
+                searchActionVisible = false;
+                userCenterActionVisible = true;
                 currentTabIndex = 2;
               });
             },
@@ -102,6 +116,8 @@ class _MainHomePageState extends State<MainHomePage> {
             icon: getTabIcon(3),
             onPressed: () {
               setState(() {
+                searchActionVisible = true;
+                userCenterActionVisible = false;
                 currentTabIndex = 3;
               });
             },
@@ -121,7 +137,7 @@ class _MainHomePageState extends State<MainHomePage> {
           return IconButton(
             icon: const Icon(
               Icons.menu,
-              color: Colors.grey,
+              color: Colors.black,
             ),
             onPressed: () {
               Scaffold.of(context).openDrawer();
@@ -130,23 +146,42 @@ class _MainHomePageState extends State<MainHomePage> {
           );
         }),
         actions: <Widget>[
-          Container(
-            width: 30,
-            height: 30,
-            decoration: new BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.white,
-                boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 2)],
-                border: Border.all(color: Colors.grey, width: 0.5)),
-            margin: EdgeInsets.only(right: 16),
-            child: IconButton(
-                color: Colors.grey,
-                icon: Icon(
-                  Icons.search,
-                  size: 15,
-                ),
-                onPressed: onSearchActionButtonClicked),
+          Offstage(
+            offstage: searchActionVisible,
+            child: Container(
+              width: 30,
+              height: 30,
+              decoration: new BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                  boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 2)],
+                  border: Border.all(color: Colors.grey, width: 0.5)),
+              margin: EdgeInsets.only(right: 16),
+              child: IconButton(
+                  color: Colors.grey,
+                  icon: Icon(
+                    Icons.search,
+                    size: 15,
+                  ),
+                  onPressed: onSearchActionButtonClicked),
+            ),
           ),
+          Offstage(
+            offstage: userCenterActionVisible,
+            child: Container(
+              child: Container(
+                width: 30,
+                height: 30,
+                margin: EdgeInsets.only(right: 16),
+                child: IconButton(
+                    icon: Icon(
+                      Icons.person_pin,
+                      size: 15,
+                    ),
+                    onPressed: onUserCenterActionButtonClicked),
+              ),
+            ),
+          )
         ],
       ),
       drawer: Drawer(
@@ -175,5 +210,4 @@ class _MainHomePageState extends State<MainHomePage> {
       body: pageLists[currentTabIndex],
     );
   }
-
 }
