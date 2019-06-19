@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/bottompage/CameraPage.dart';
-import 'package:todo_app/bottompage/AssignmentPage.dart';
-import 'package:todo_app/bottompage/SearchPage.dart';
-import 'package:todo_app/bottompage/PersonPage.dart';
+import 'package:todo_app/bottompage/PlanDatePage.dart';
+import 'package:todo_app/bottompage/HomePage.dart';
+import 'package:todo_app/bottompage/GeneraViewPage.dart';
+import 'package:todo_app/bottompage/SettingsPage.dart';
 
 class MainHomePage extends StatefulWidget {
   @override
