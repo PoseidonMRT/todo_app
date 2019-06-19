@@ -109,44 +109,48 @@ class _UserGuidePageState extends State<UserGuidePage> {
           ),
           Offstage(
             offstage: mainPageActionVisible,
-            child: Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                borderRadius: new BorderRadius.circular(50),
-                gradient: new LinearGradient(
-                    colors: [
-                      Color(0xFF68B7CE),
-                      Color(0xFF37EBBB),
-                    ],
-                    begin: FractionalOffset(0.0, 0.0),
-                    end: FractionalOffset(1.0, 0.0),
-                    stops: [0.0, 1.0],
-                    tileMode: TileMode.clamp),
-              ),
-              margin: EdgeInsets.only(left: 40, right: 40, bottom: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  new FlatButton(
-                    child: Text(
-                      'Get Started',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
+            child: GestureDetector(
+              onTap: userGuideActionComplete,
+              child: Container(
+                height: 48,
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  borderRadius: new BorderRadius.circular(50),
+                  gradient: new LinearGradient(
+                      colors: [
+                        Color(0xFF68B7CE),
+                        Color(0xFF37EBBB),
+                      ],
+                      begin: FractionalOffset(0.0, 0.0),
+                      end: FractionalOffset(1.0, 0.0),
+                      stops: [0.0, 1.0],
+                      tileMode: TileMode.clamp),
+                ),
+                margin: EdgeInsets.only(left: 40, right: 40, bottom: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    new FlatButton(
+                      child: Text(
+                        'Get Started',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
                       ),
+                      color: Colors.transparent,
+                      padding: EdgeInsets.only(right: 0),
+                      onPressed: userGuideActionComplete,
                     ),
-                    color: Colors.transparent,
-                    padding: EdgeInsets.only(right: 0),
-                    onPressed: userGuideActionComplete,
-                  ),
-                  new Icon(
-                    Icons.navigate_next,
-                    color: Colors.white,
-                  )
-                ],
+                    new Icon(
+                      Icons.navigate_next,
+                      color: Colors.white,
+                    )
+                  ],
+                ),
               ),
-            ),
+            )
           )
         ],
       ),
