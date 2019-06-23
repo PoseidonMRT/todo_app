@@ -17,8 +17,12 @@ void main() {
 Future initPreferencesData() async {
   SharedPreferences preferences = await SharedPreferences.getInstance();
   bool isFirstRun = preferences.getBool(Constants.keyIsFirstRun);
+  bool isAutoSync = preferences.getBool(Constants.keyIsAutoSync);
   if (isFirstRun == null) {
     preferences.setBool(Constants.keyIsFirstRun, true);
+  }
+  if (isAutoSync == null){
+    preferences.setBool(Constants.keyIsAutoSync, true);
   }
 }
 

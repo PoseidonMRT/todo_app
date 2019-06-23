@@ -4,6 +4,7 @@ class Constants{
   ///
   ///whether app is first run
   static final String keyIsFirstRun = "isFirstRun";
+  static final String keyIsAutoSync = "isAutoSync";
 
 
   ///navigator routes tag
