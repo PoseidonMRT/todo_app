@@ -44,7 +44,17 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Future initSyncAutomaticallyState() async {
     sharedPreferences = await SharedPreferences.getInstance();
-    isAutoSync = sharedPreferences.getBool(Constants.keyIsAutoSync);
+    setState(() {
+      isAutoSync = sharedPreferences.getBool(Constants.keyIsAutoSync);
+      debugPrint("isAutosync=$isAutoSync");
+    });
+  }
+
+  bool isAutoSyncEnabled(){
+    if (isAutoSync == null){
+      return true;
+    }
+    return !isAutoSync;
   }
 
   @override
@@ -100,6 +110,45 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             ),
             onTap: onSyncAutomaticallyTaped,
+          ),
+          new ListTile(
+            leading: new Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.grey, offset: Offset(0, 2), blurRadius: 3)
+                ],
+              ),
+              child: new Icon(
+                Icons.language,
+                size: 20,
+              ),
+            ),
+            title: new Text(
+              "Language",
+              style: TextStyle(fontWeight: FontWeight.w400),
+            ),
+            trailing: Container(
+              width: 38,
+              child: Row(
+                children: <Widget>[
+                  new Text(
+                    "EN",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w200,
+                        color: Colors.grey
+                    ),
+                  ),
+                  new Icon(
+                    Icons.navigate_next,
+                    size: 16,
+                    color: Colors.grey,
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),
