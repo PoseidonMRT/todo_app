@@ -165,6 +165,41 @@ class _SettingsPageState extends State<SettingsPage> {
             onTap: () =>
                 {navigateToOtherPage(Constants.languageListPageRoutesTag)},
           ),
+          new ListTile(
+            leading: new Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.grey, offset: Offset(0, 2), blurRadius: 3)
+                ],
+              ),
+              child: new Icon(
+                Icons.notifications,
+                size: 20,
+              ),
+            ),
+            title: new Text(
+              "Show Notification",
+              style: TextStyle(fontWeight: FontWeight.w400),
+            ),
+            trailing: Container(
+              width: 38,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  new Icon(
+                    Icons.navigate_next,
+                    size: 16,
+                    color: Colors.grey,
+                  ),
+                ],
+              ),
+            ),
+            onTap: () =>
+            {navigateToOtherPage(Constants.notificationSettingsPageRoutesTag)},
+          ),
         ],
       ),
     );

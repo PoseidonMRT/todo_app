@@ -19,6 +19,9 @@ class Constants{
   ///language list page
   static final String languageListPageRoutesTag = "languageListPage";
 
+  ///notification settings page
+  static final String notificationSettingsPageRoutesTag = "notificationSettingsPage";
+
   ///Settings
   ///是否显示右上角debug标签，true-显示，false-隐藏
   static final bool isNeedShowDebugBanner = false;
