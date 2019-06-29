@@ -30,6 +30,10 @@ class _SettingsPageState extends State<SettingsPage> {
     }
   }
 
+  void navigateToOtherPage(String routeName) {
+    Navigator.of(context).pushNamed(routeName);
+  }
+
   void onSyncAutomaticallyTaped() async {
     isAutoSync = !isAutoSync;
     sharedPreferences = await SharedPreferences.getInstance();
@@ -42,16 +46,15 @@ class _SettingsPageState extends State<SettingsPage> {
             });
   }
 
-  Future initSyncAutomaticallyState() async {
+  Future<bool> initSyncAutomaticallyState() async {
     sharedPreferences = await SharedPreferences.getInstance();
-    setState(() {
-      isAutoSync = sharedPreferences.getBool(Constants.keyIsAutoSync);
-      debugPrint("isAutosync=$isAutoSync");
-    });
+    isAutoSync = sharedPreferences.getBool(Constants.keyIsAutoSync);
+    debugPrint("isAutoSync='$isAutoSync'");
+    return isAutoSync != null;
   }
 
-  bool isAutoSyncEnabled(){
-    if (isAutoSync == null){
+  bool isAutoSyncEnabled() {
+    if (isAutoSync == null) {
       return true;
     }
     return !isAutoSync;
@@ -99,15 +102,27 @@ class _SettingsPageState extends State<SettingsPage> {
                 fontWeight: FontWeight.w200,
               ),
             ),
-            trailing: Container(
-              child: Offstage(
-                offstage: !isAutoSync,
-                child: new Icon(
-                  Icons.check,
-                  size: 20,
-                  color: Colors.blueAccent,
-                ),
-              ),
+            trailing: FutureBuilder<bool>(
+              future: initSyncAutomaticallyState(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return new Container(
+                    width: 25,
+                    child: Offstage(
+                      offstage: !isAutoSync,
+                      child: new Icon(
+                        Icons.check,
+                        size: 20,
+                        color: Colors.blueAccent,
+                      ),
+                    ),
+                  );
+                } else {
+                  return new Container(
+                    width: 25,
+                  );
+                }
+              },
             ),
             onTap: onSyncAutomaticallyTaped,
           ),
@@ -137,9 +152,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   new Text(
                     "EN",
                     style: TextStyle(
-                        fontWeight: FontWeight.w200,
-                        color: Colors.grey
-                    ),
+                        fontWeight: FontWeight.w200, color: Colors.grey),
                   ),
                   new Icon(
                     Icons.navigate_next,
@@ -149,6 +162,8 @@ class _SettingsPageState extends State<SettingsPage> {
                 ],
               ),
             ),
+            onTap: () =>
+                {navigateToOtherPage(Constants.languageListPageRoutesTag)},
           ),
         ],
       ),
