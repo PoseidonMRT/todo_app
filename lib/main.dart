@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'SwipeMainHomePage.dart';
 import 'package:todo_app/settings/LanguageListPage.dart';
 import 'package:todo_app/settings/NotificationSettingsPage.dart';
+import 'package:todo_app/personcenter/PersonCenterPage.dart';
 
 void main() {
   initPreferencesData().whenComplete(() => {
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
           Constants.userGuidePageRoutesTag: (BuildContext context) => new UserGuidePage(),
           Constants.languageListPageRoutesTag: (BuildContext context) => new LanguageListPage(),
           Constants.notificationSettingsPageRoutesTag: (BuildContext context) => new NotificationSettingsPage(),
+          Constants.personCenterPageRoutesTag: (BuildContext context) => new PersonCenterPage(),
         });
   }
 }

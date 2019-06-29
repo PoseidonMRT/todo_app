@@ -3,6 +3,7 @@ import 'package:todo_app/bottompage/PlanDatePage.dart';
 import 'package:todo_app/bottompage/HomePage.dart';
 import 'package:todo_app/bottompage/GeneraViewPage.dart';
 import 'package:todo_app/bottompage/SettingsPage.dart';
+import 'package:todo_app/config/Constants.dart';
 
 class SwipeMainHomePage extends StatefulWidget {
   @override
@@ -43,7 +44,7 @@ class _SwipeMainHomePageState extends State<SwipeMainHomePage> {
   void onSearchActionButtonClicked() {}
 
   void onUserCenterActionButtonClicked(){
-
+    Navigator.of(context).pushNamed(Constants.personCenterPageRoutesTag);
   }
 
   Icon getTabIcon(int curIndex) {

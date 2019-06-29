@@ -22,6 +22,9 @@ class Constants{
   ///notification settings page
   static final String notificationSettingsPageRoutesTag = "notificationSettingsPage";
 
+  ///person center page
+  static final String personCenterPageRoutesTag = "personCenterPage";
+
   ///Settings
   ///是否显示右上角debug标签，true-显示，false-隐藏
   static final bool isNeedShowDebugBanner = false;
