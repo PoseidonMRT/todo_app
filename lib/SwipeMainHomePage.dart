@@ -41,7 +41,9 @@ class _SwipeMainHomePageState extends State<SwipeMainHomePage> {
     pageController = new PageController(initialPage: 0);
   }
 
-  void onSearchActionButtonClicked() {}
+  void onSearchActionButtonClicked() {
+    Navigator.of(context).pushNamed(Constants.searchPageRoutesTag);
+  }
 
   void onUserCenterActionButtonClicked(){
     Navigator.of(context).pushNamed(Constants.personCenterPageRoutesTag);

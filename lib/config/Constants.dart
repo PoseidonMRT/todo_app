@@ -25,6 +25,9 @@ class Constants{
   ///person center page
   static final String personCenterPageRoutesTag = "personCenterPage";
 
+  ///search page
+  static final String searchPageRoutesTag = "searchPage";
+
   ///Settings
   ///是否显示右上角debug标签，true-显示，false-隐藏
   static final bool isNeedShowDebugBanner = false;

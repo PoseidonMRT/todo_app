@@ -32,7 +32,9 @@ class _MainHomePageState extends State<MainHomePage> {
     pageLists = [HomePage(), GeneraViewPage(), PlanDatePage(), SettingsPage()];
   }
 
-  void onSearchActionButtonClicked() {}
+  void onSearchActionButtonClicked() {
+    Navigator.of(context).pushNamed(Constants.searchPageRoutesTag);
+  }
 
   void onUserCenterActionButtonClicked(){
     Navigator.of(context).pushNamed(Constants.personCenterPageRoutesTag);
