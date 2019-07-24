@@ -21,6 +21,10 @@
 
   测试文件目录
 
+- pubspec.yaml
+  
+  相当于Gradle文件，用于指定项目依赖，不同于Android原生开发，Res也需要在该文件中显示声明引用
+
 lib目录主要包含下面包结构:
 - config包
 - splash包
