@@ -26,6 +26,9 @@ There are following directory in this project:
 - test directory
 
   this directory contains test files.
+- pubspec.yaml
+
+  dependency manager files,same function as build.gradle files in android native project.
 
 We divide the files in lib directory into the following packages:
 - config packages
