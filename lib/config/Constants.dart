@@ -28,6 +28,9 @@ class Constants{
   ///search page
   static final String searchPageRoutesTag = "searchPage";
 
+  ///2048 game page
+  static final String game2048PageRoutesTag = "game2048Page";
+
   ///Settings
   ///是否显示右上角debug标签，true-显示，false-隐藏
   static final bool isNeedShowDebugBanner = false;

@@ -29,6 +29,13 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/icon.png"
+  image_path_android: "assets/images/icon.png"
+  image_path_ios: "assets/images/icon.png"
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
@@ -48,12 +55,16 @@ flutter:
   - family: DancingRegular
     fonts:
     - asset: assets/fonts/DancingScript-Regular.ttf
+  - family: StarJedi
+    fonts:
+    - asset: assets/fonts/starjedi.ttf
 
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/guide_page1.PNG
     - assets/images/guide_page2.PNG
     - assets/images/guide_page3.PNG
+    - assets/images/icon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
