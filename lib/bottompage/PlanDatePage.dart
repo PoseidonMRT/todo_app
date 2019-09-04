@@ -12,6 +12,8 @@ class _PlanDatePageState extends State<PlanDatePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Text("CameraPage");
+    return new Container(
+      child: Text("PlanPage"),
+    );
   }
 }

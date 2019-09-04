@@ -12,6 +12,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Text("AssignmentPage");
+    return new Container(
+      alignment: Alignment.center,
+      child: new Text("Home"),
+    );
   }
 }
