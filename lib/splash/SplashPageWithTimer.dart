@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todo_app/config/Colors.dart' as prefix0;
 import 'package:todo_app/config/Constants.dart';
 
 // contain count down timer widgets,
@@ -95,8 +96,8 @@ class _SplashPageWithTimerState extends State<SplashPageWithTimer> {
           decoration: new BoxDecoration(
               gradient: new LinearGradient(
                   colors: [
-                    Color(0xFF68B7CE),
-                    Color(0xFF37EBBB),
+                    prefix0.Colors.colorFF68B7CE,
+                    prefix0.Colors.colorFF37EBBB,
                   ],
                   begin: FractionalOffset(0.0, 0.0),
                   end: FractionalOffset(0.0, 1.0),
