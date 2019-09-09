@@ -12,6 +12,8 @@ class _GeneraViewPageState extends State<GeneraViewPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Text("SearchPage");
+    return new Container(
+      child: new Text("GeneraView"),
+    );
   }
 }

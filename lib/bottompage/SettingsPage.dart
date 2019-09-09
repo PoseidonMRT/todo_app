@@ -18,8 +18,6 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   void initState() {
     super.initState();
-    initSyncAutomaticallyState()
-        .whenComplete(() => {getSyncAutomaticallySubTitle()});
   }
 
   void getSyncAutomaticallySubTitle() {
@@ -50,6 +48,9 @@ class _SettingsPageState extends State<SettingsPage> {
     sharedPreferences = await SharedPreferences.getInstance();
     isAutoSync = sharedPreferences.getBool(Constants.keyIsAutoSync);
     debugPrint("isAutoSync='$isAutoSync'");
+    setState(() {
+      getSyncAutomaticallySubTitle();
+    });
     return isAutoSync != null;
   }
 
