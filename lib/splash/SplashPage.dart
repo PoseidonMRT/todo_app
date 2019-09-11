@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
+import 'package:todo_app/config/Colors.dart' as prefix0;
 import 'package:todo_app/config/Constants.dart';
 
 // contain Future delayed async task,
@@ -42,8 +43,8 @@ class _SplashPageState extends State<SplashPage> {
       decoration: new BoxDecoration(
           gradient: new LinearGradient(
               colors: [
-                Color(0xFF68B7CE),
-                Color(0xFF37EBBB),
+                prefix0.Colors.colorFF68B7CE,
+                prefix0.Colors.colorFF37EBBB,
               ],
               begin: FractionalOffset(0.0, 0.0),
               end: FractionalOffset(0.0, 1.0),
